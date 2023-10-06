@@ -1,0 +1,8 @@
+# Ignorer le répertoire node_modules et .env pour le api
+api/node_modules
+api/config/.env
+
+# Ignorer le répertoire node_modules et .gitignore pour le client
+client/node_modules
+client/.gitignore
+client/.env
