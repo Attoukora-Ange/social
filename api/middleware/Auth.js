@@ -30,7 +30,8 @@ export const generateAccessToken = (payload) => {
     return accessToken;
   } catch (error) {
     // Gestion des erreurs en cas d'échec de la génération du jeton
-    throw new Error("Erreur lors de la génération du jeton d'accès.");
+    // throw new Error("Erreur lors de la génération du jeton d'accès.");
+    throw new Error(error.message);
   }
 };
 
