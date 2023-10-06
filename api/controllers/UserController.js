@@ -186,7 +186,7 @@ export const postConnectOneUserRoute = async (req, res) => {
 
     // Étape 7 : Générer un jeton d'accès (token) pour l'utilisateur authentifié
     const token = generateAccessToken({
-      id: userExist._id.toString(),
+      id: userExist._id,
       isAdmin: userExist.isAdmin,
     });
 
