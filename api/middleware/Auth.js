@@ -3,7 +3,7 @@ import { UserModel } from "../models/UserModel.js";
 const revokedTokens = [];
 
 const options = {
-  expiresIn: "1d", // Délai d'expiration du JWT
+  expiresIn: "30d", // Délai d'expiration du JWT
 };
 
 export const addToRevokedTokens = (token) => {
