@@ -9,7 +9,8 @@ const UserSchema = new Schema(
   {
     photo: {
       type: String,
-      default:"image_profil/user.png"
+      default:
+        "https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere.png",
     },
     nom_prenoms: {
       type: String,
@@ -45,7 +46,7 @@ const UserSchema = new Schema(
       minlength: [4, "Minimum 4 caratères"],
       trim: true,
     },
-    codePasseGenere:{
+    codePasseGenere: {
       type: String,
     },
     matrimoniale: {

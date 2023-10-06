@@ -37,7 +37,7 @@ userRoutes.put("/:id", auth, putOneUserRoute);
 userRoutes.put(
   "/image/:id",
   auth,
-  upload("images/image_profil", "image_profil", fileFilterImageSeul),
+  upload("image_profil", fileFilterImageSeul),
   multerErrorMiddleware,
   putOneImageRoute
 );
