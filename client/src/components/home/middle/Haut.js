@@ -70,7 +70,7 @@ export const Haut = () => {
           <Avatar
             sx={{ width: 40, height: 40, marginRight: 1 }}
             alt={user?.nom_prenoms}
-            src={process.env.REACT_APP_CHEMIN_IMAGE + "/" + user?.photo}
+            src={user?.photo}
           />
           <Search>
             <StyledInputBase
