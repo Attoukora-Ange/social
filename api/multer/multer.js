@@ -42,9 +42,9 @@ export const fileFilterImageSeul = (_, file, cb) => {
 };
 
 // Configuration du stockage des fichiers téléchargés
-export const upload = (chemin, fieldName, filter) =>
+export const upload = (fieldName, filter) =>
   multer({
-    storage: storage(chemin), // Utilise la fonction de stockage avec le chemin spécifié
+    storage: storage, // Utilise la fonction de stockage avec le chemin spécifié
     limits: { fileSize: 100 * 1024 * 1024 }, // Limite la taille des fichiers à 100 Mo en octets
     fileFilter: filter, // Utilise la fonction de filtrage spécifiée
   }).single(fieldName); // Accepte un seul fichier avec le champ spécifié
