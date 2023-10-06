@@ -86,7 +86,6 @@ export const Connexion = () => {
       // Récupère la liste de tous les utilisateurs
       await AXIOS_TO_GET_USER();
     } catch (error) {
-      console.error("Erreur lors de la connexion :", error);
       // Gère les erreurs de connexion (par exemple, affiche un message d'erreur)
       setOpenErreur(true);
       setErreur(

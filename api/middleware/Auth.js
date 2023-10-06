@@ -6,10 +6,10 @@ const options = {
   expiresIn: "1d", // Délai d'expiration du JWT
 };
 
-export const addToRevokedTokens = (token)=> {
+export const addToRevokedTokens = (token) => {
   // Ajoutez le jeton révoqué au tableau
   revokedTokens.push(token);
-}
+};
 
 export const isValidToken = (token) => {
   // Vérifiez si le token est présent dans le tableau des tokens révoqués
@@ -24,14 +24,17 @@ export const isValidToken = (token) => {
 export const generateAccessToken = (payload) => {
   try {
     // Signe le payload avec la clé secrète pour créer un jeton JWT
-    const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_KEY, options);
-    
+    const accessToken = jwt.sign(
+      payload,
+      process.env.ACCESS_TOKEN_KEY,
+      options
+    );
+
     // Retourne le jeton JWT généré
     return accessToken;
   } catch (error) {
     // Gestion des erreurs en cas d'échec de la génération du jeton
-    // throw new Error("Erreur lors de la génération du jeton d'accès.");
-    throw new Error(error.message);
+    throw new Error("Erreur lors de la génération du jeton d'accès.");
   }
 };
 
@@ -71,7 +74,6 @@ export const auth = (req, res, next) => {
     return res.status(500).json({ error: error.message });
   }
 };
-
 
 /**
  * Middleware d'authentification pour vérifier si un utilisateur est un administrateur.
@@ -143,4 +145,3 @@ export const authData = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-
