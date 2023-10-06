@@ -42,13 +42,13 @@ export const getAllPostsSouvenirRoute = async (req, res) => {
 
   try {
     // Rechercher tous les posts associés à l'ID de l'utilisateur
-    const posts = await PostModel.find({ postUser: userId })
+    const post = await PostModel.find({ postUser: userId })
       .populate("postUser", "-password -codePasseGenere") // Population du champ "postUser"
       .populate("commentaire.commentaireUser", "-password -codePasseGenere") // Population des champs "commentaire.commentaireUser"
       .sort({ createdAt: -1 }); // Tri des posts par date de création décroissante
 
     // Renvoyer les posts trouvés en réponse avec le statut 200
-    return res.status(200).json({ posts });
+    return res.status(200).json({ post });
   } catch (error) {
     // En cas d'erreur, renvoyer une réponse JSON avec le statut 500 et un message d'erreur
     return res.status(500).json({ error: error.message });
