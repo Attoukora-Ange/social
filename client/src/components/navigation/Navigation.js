@@ -198,7 +198,7 @@ export const Navigation = () => {
     setOpenNotification(false);
   };
 
-  // Debut  Importer d'un autre projet AIHCI
+  // Debut  Importer d'un autre projet AttoNexa
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -273,7 +273,7 @@ export const Navigation = () => {
     </Box>
   );
 
-  // Fin  Importer d'un autre projet AIHCI
+  // Fin  Importer d'un autre projet AttoNexa
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -413,7 +413,7 @@ export const Navigation = () => {
             to="/"
             sx={{ textDecoration: "none", color: "white" }}
           >
-            AIHCI
+            AttoNexa
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />

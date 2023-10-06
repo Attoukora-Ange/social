@@ -141,7 +141,7 @@ export const Inscription = () => {
         color="#099e4c"
         pb={2}
       >
-        Rejoignez AIHCI
+        Rejoignez AttoNexa réseau social
       </Typography>
       <Stack
         gap={1}

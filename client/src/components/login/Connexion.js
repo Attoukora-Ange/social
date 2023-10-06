@@ -132,7 +132,7 @@ export const Connexion = () => {
         color="#099e4c"
         pb={2}
       >
-        AIHCI
+        AttoNexa
       </Typography>
       <Stack
         gap={1}
