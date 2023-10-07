@@ -83,7 +83,35 @@ export const Haut = () => {
           </Search>
         </Box>
         <Divider />
-        <Box display="flex" justifyContent="space-around">
+
+        {/* Petit ecran */}
+        <Box
+          sx={{ display: { xs: "flex", md: "none" } }}
+          justifyContent="space-around"
+        >
+          <Button
+            variant="text"
+            color="success"
+            startIcon={<OndemandVideoIcon />}
+            onClick={startCamera}
+          ></Button>
+          <Button
+            onClick={handleClickOpen}
+            variant="text"
+            startIcon={<PhotoLibraryIcon />}
+          ></Button>
+          <Button
+            variant="text"
+            color="warning"
+            startIcon={<EmojiEmotionsIcon />}
+          ></Button>
+        </Box>
+
+        {/* Grand ecran */}
+        <Box
+          sx={{ display: { xs: "none", md: "flex" } }}
+          justifyContent="space-around"
+        >
           <Button
             variant="text"
             color="success"
