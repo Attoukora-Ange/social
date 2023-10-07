@@ -11,6 +11,7 @@ import { USE_USER_CONTEXTE } from "../../reduce/Contexte";
 import { USERS } from "../../reduce/Action";
 import { useState, forwardRef } from "react";
 import axios from "axios";
+import { calculateAge } from "../../utils/utils";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -83,15 +84,31 @@ export const InfoUtilisateurDetail = () => {
               <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
                 Nom et prénoms
               </TableCell>
-              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
-                Date de naissance
-              </TableCell>
+              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>Age</TableCell>
               <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>Pays</TableCell>
               <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
                 Email
               </TableCell>
               <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
                 Situation matrimoniale
+              </TableCell>
+              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
+                Ville
+              </TableCell>
+              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
+                profession
+              </TableCell>
+              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
+                followers
+              </TableCell>
+              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
+                following
+              </TableCell>
+              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
+                suggestion
+              </TableCell>
+              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
+                Admin
               </TableCell>
             </TableRow>
           </TableHead>
@@ -128,7 +145,7 @@ export const InfoUtilisateurDetail = () => {
                   component="th"
                   scope="row"
                 >
-                  {user.date_naissance}
+                  {calculateAge(user.date_naissance)}
                 </TableCell>
                 <TableCell
                   sx={{ fontSize: 12, fontWeight: 300 }}
@@ -150,6 +167,48 @@ export const InfoUtilisateurDetail = () => {
                   scope="row"
                 >
                   {user.matrimoniale}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.ville}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.profession}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.followers?.length}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.following?.length}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.suggestion?.length}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.isAdmin ? "Admin" : "Utilisateur"}
                 </TableCell>
                 <TableCell
                   sx={{ fontSize: 12, fontWeight: 500, color: "red" }}
