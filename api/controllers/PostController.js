@@ -121,8 +121,10 @@ export const postCreateOnePostRoute = async (req, res) => {
       // Vérifier si c'est une vidéo
       else if (allowedMimeTypesVideo.includes(req.file.mimetype)) {
         const postFichier = await cloudinary.uploader.upload(req.file.path, {
+          resource_type: "video",
           folder: "social/post",
         });
+
         post.video = postFichier.secure_url;
       }
     }
@@ -177,6 +179,7 @@ export const putOnePostRoute = async (req, res) => {
       // Vérifier si c'est une vidéo
       else if (allowedMimeTypesVideo.includes(req.file.mimetype)) {
         const postFichier = await cloudinary.uploader.upload(req.file.path, {
+          resource_type:"video",
           folder: "social/post",
         });
         updateFields.video = postFichier.secure_url;

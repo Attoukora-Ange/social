@@ -26,7 +26,7 @@ const Alert = forwardRef(function Alert(props, ref) {
 });
 
 export const ListeSuggestion = ({ membre }) => {
-  const { user, users, dispatch } = USE_USER_CONTEXTE();
+  const { user,  dispatch } = USE_USER_CONTEXTE();
   const [openSucces, setOpenSucces] = useState(false);
   const [succes, setSucces] = useState("");
 
