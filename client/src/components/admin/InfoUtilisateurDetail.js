@@ -210,15 +210,17 @@ export const InfoUtilisateurDetail = () => {
                 >
                   {user.isAdmin ? "Admin" : "Utilisateur"}
                 </TableCell>
-                <TableCell
-                  sx={{ fontSize: 12, fontWeight: 500, color: "red" }}
-                  component={Button}
-                  size="small"
-                  scope="row"
-                  onClick={() => handleDelete(user._id)}
-                >
-                  Supprimer
-                </TableCell>
+                {!user.isAdmin && (
+                  <TableCell
+                    sx={{ fontSize: 12, fontWeight: 500, color: "red" }}
+                    component={Button}
+                    size="small"
+                    scope="row"
+                    onClick={() => handleDelete(user._id)}
+                  >
+                    Supprimer
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
