@@ -86,7 +86,7 @@ export const Haut = () => {
 
         {/* Petit ecran */}
         <Box
-          sx={{ display: { xs: "flex", md: "none" } }}
+          sx={{ display: { xs: "flex", sm: "none" } }}
           justifyContent="space-around"
         >
           <Button
@@ -109,7 +109,7 @@ export const Haut = () => {
 
         {/* Grand ecran */}
         <Box
-          sx={{ display: { xs: "none", md: "flex" } }}
+          sx={{ display: { xs: "none", sm: "flex" } }}
           justifyContent="space-around"
         >
           <Button
