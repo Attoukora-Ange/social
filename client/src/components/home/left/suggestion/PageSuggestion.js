@@ -5,7 +5,7 @@ import { USE_USER_CONTEXTE } from "../../../../reduce/Contexte";
 export const PageSuggestion = () => {
   const { user, users } = USE_USER_CONTEXTE();
   return (
-    <Box sx={{ padding: 2, minWidth: 500 }}>
+    <Box sx={{ padding: 2 }}>
       <Typography
         variant="h5"
         component="div"

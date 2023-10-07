@@ -71,7 +71,7 @@ export const EvenementDetail = ({ inf }) => {
   };
 
   return (
-    <Card sx={{ display: "flex", my: 1, minWidth: 400 }}>
+    <Card sx={{ display: "flex", my: 1 }}>
       <CardMedia
         component="img"
         sx={{ width: 200 }}

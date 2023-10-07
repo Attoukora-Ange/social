@@ -5,7 +5,7 @@ import { ListeUtilisateur } from "./ListeUtilisateur";
 export const PageUtilisateur = () => {
   const { users } = USE_USER_CONTEXTE();
   return (
-    <Box sx={{ padding: 2, minWidth: 500 }}>
+    <Box sx={{ padding: 2 }}>
       <Typography
         variant="h5"
         component="div"
