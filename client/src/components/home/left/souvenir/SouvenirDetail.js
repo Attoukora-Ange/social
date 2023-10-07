@@ -181,7 +181,7 @@ export const SouvenirDetail = ({ post }) => {
     <Card
       sx={{
         width: "30%",
-        // minWidth: 430,
+        minWidth: 430,
         height: "40vh",
         overflowY: "scroll",
         justifySelf: "self-start",
