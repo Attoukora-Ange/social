@@ -5,10 +5,7 @@ import { Box, Container } from "@mui/material";
 
 export const Layout = ({ children }) => {
   return (
-    <Container
-      maxWidth="xl"
-      sx={{ display: "flex", justifyContent: "center", gap: 5, mt: 2 }}
-    >
+    <Container maxWidth="xl">
       <Navigation />
       <Box sx={{ mt: 8 }}>{children}</Box>
       <Footer />
