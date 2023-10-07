@@ -24,7 +24,7 @@ export const Middle = () => {
       try {
         // Afficher le chargement pendant le chargement des données
         dispatch({ type: LOADING });
-  
+
         // Récupérer le token d'authentification depuis le localStorage
         const token = JSON.parse(localStorage.getItem("token"));
         const OPTIONS = {
@@ -32,7 +32,7 @@ export const Middle = () => {
             authorization: `Bearer ${token}`,
           },
         };
-  
+
         // Fonction pour récupérer les publications
         const fetchPosts = async () => {
           try {
@@ -45,7 +45,7 @@ export const Middle = () => {
             dispatch({ type: ERROR });
           }
         };
-  
+
         // Fonction pour récupérer les informations
         const fetchInfo = async () => {
           try {
@@ -59,7 +59,7 @@ export const Middle = () => {
             dispatch({ type: ERROR });
           }
         };
-  
+
         // Fonction pour récupérer les problèmes (si l'utilisateur est admin)
         const fetchProbleme = async () => {
           try {
@@ -67,16 +67,19 @@ export const Middle = () => {
               `${process.env.REACT_APP_API}/post/probleme`,
               OPTIONS
             );
-            dispatch({ type: ALL_PROBLEME, payload: POST_PROBLEME_DATA.data.post });
+            dispatch({
+              type: ALL_PROBLEME,
+              payload: POST_PROBLEME_DATA.data.post,
+            });
           } catch (error) {
             dispatch({ type: ERROR });
           }
         };
-  
+
         // Exécution séquentielle des fonctions de récupération des données
         await fetchPosts();
         await fetchInfo();
-  
+
         // Si l'utilisateur est administrateur, récupérer également les problèmes
         if (user?.isAdmin) {
           await fetchProbleme();
@@ -86,11 +89,10 @@ export const Middle = () => {
         dispatch({ type: ERROR });
       }
     };
-  
+
     // Appeler la fonction fetchData une fois lorsque les dépendances changent
     fetchData();
   }, [dispatch, user?.isAdmin]);
-  
 
   useEffect(() => {
     // Fonction de gestion du défilement
@@ -113,7 +115,7 @@ export const Middle = () => {
             `${process.env.REACT_APP_API}/post/poster?page=${nextPage}`,
             OPTIONS
           );
-  
+
           // Vérifier si de nouvelles données ont été chargées
           if (posts?.length !== POST_DATA.data.post.length) {
             dispatch({ type: ALL_POST, payload: POST_DATA.data.post });
@@ -123,20 +125,19 @@ export const Middle = () => {
         AXIOS_TO_GET_POST();
       }
     }
-  
+
     // Ajouter un écouteur d'événements de défilement
     window.addEventListener("scroll", handleScroll);
-  
+
     // Supprimer l'écouteur d'événements lorsque le composant est démonté
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [posts?.length, dispatch, page]);
-  
 
   return (
     <Stack
-      sx={{ maxWidth: { xs: "100%", md: 600 }, mr: 2, minWidth: { xs: 600 } }}
+      sx={{ maxWidth: { xs: "100%", md: 600 }, mr: 2 }}
       flexGrow={2}
       p={1}
       gap={2}
