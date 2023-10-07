@@ -69,7 +69,7 @@ export const InfoProblemeDetail = () => {
     const url = `${process.env.REACT_APP_API}/post/probleme/${id}`;
     performDeleteRequest(url, "Suppression réussie");
   };
-  
+
   const handleVoir = (id) => {
     const url = `${process.env.REACT_APP_API}/post/probleme/${id}`;
     performGetRequest(url, "Ouverture du message réussi");
@@ -89,7 +89,6 @@ export const InfoProblemeDetail = () => {
       );
       dispatch({ type: ALL_PROBLEME, payload: PROBLEME_DATA.data.post });
     } catch (error) {
-      console.error(error);
       setOpenError(true);
       setError(error.message);
     }
@@ -129,6 +128,7 @@ export const InfoProblemeDetail = () => {
           <TableBody>
             {probleme?.map((prob, index) => (
               <TableRow
+                key={prob._id}
                 hover
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >

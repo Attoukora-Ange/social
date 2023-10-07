@@ -5,12 +5,63 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Snackbar } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
+import { USE_USER_CONTEXTE } from "../../reduce/Contexte";
+import { USERS } from "../../reduce/Action";
+import { useState, forwardRef } from "react";
+import axios from "axios";
+
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export const InfoUtilisateurDetail = () => {
-  const handleDelete = async (e) => {
-    // e.preventDefault();
-    alert("Vous n'avez pas encore configuré cette option !")
+  const { users, dispatch } = USE_USER_CONTEXTE();
+  const [openSucces, setOpenSucces] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [succes, setSucces] = useState("");
+  const [error, setError] = useState("");
+
+  const performDeleteRequest = async (url, successMessage) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const OPTIONS = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      await axios.delete(url, OPTIONS);
+      setSucces(successMessage);
+
+      fetchUsersList();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = (id) => {
+    const url = `${process.env.REACT_APP_API}/user/${id}`;
+    performDeleteRequest(url, "Suppression réussie");
+  };
+
+  const fetchUsersList = async () => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const OPTIONS = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const USERS_DATA = await axios.get(
+        `${process.env.REACT_APP_API}/user`,
+        OPTIONS
+      );
+      dispatch({ type: USERS, payload: USERS_DATA.data.user });
+    } catch (error) {
+      setOpenError(true);
+      setError(error.message);
+    }
   };
 
   return (
@@ -26,7 +77,9 @@ export const InfoUtilisateurDetail = () => {
           <TableHead>
             <TableRow sx={{ bgcolor: "#f0f0f0" }}>
               <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>Id</TableCell>
-              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>Genre</TableCell>
+              <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
+                Genre
+              </TableCell>
               <TableCell sx={{ fontSize: 14, fontWeight: 500 }}>
                 Nom et prénoms
               </TableCell>
@@ -43,73 +96,101 @@ export const InfoUtilisateurDetail = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow
-              hover
-              key={"index"}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell
-                sx={{ fontSize: 12, fontWeight: 500 }}
-                component="th"
-                scope="row"
+            {users?.map((user, index) => (
+              <TableRow
+                hover
+                key={user._id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                {"index + 1"}
-              </TableCell>
-              <TableCell
-                sx={{ fontSize: 12, fontWeight: 500 }}
-                component="th"
-                scope="row"
-              >
-                {"Genre"}
-              </TableCell>
-              <TableCell
-                sx={{ fontSize: 12, fontWeight: 300 }}
-                component="th"
-                scope="row"
-              >
-                {"row.nom_prenoms"}
-              </TableCell>
-              <TableCell
-                sx={{ fontSize: 12, fontWeight: 300 }}
-                component="th"
-                scope="row"
-              >
-                {"row.date_naissance"}
-              </TableCell>
-              <TableCell
-                sx={{ fontSize: 12, fontWeight: 300 }}
-                component="th"
-                scope="row"
-              >
-                {"row.pays"}
-              </TableCell>
-              <TableCell
-                sx={{ fontSize: 12, fontWeight: 300 }}
-                component="th"
-                scope="row"
-              >
-                {"row.email"}
-              </TableCell>
-              <TableCell
-                sx={{ fontSize: 12, fontWeight: 300 }}
-                component="th"
-                scope="row"
-              >
-                {"row.matrimoniale"}
-              </TableCell>
-              <TableCell
-                sx={{ fontSize: 12, fontWeight: 500, color: "red" }}
-                component={Button}
-                size="small"
-                scope="row"
-                onClick={handleDelete()}
-              >
-                Supprimer
-              </TableCell>
-            </TableRow>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 500 }}
+                  component="th"
+                  scope="row"
+                >
+                  {index + 1}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 500 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.genre}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.nom_prenoms}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.date_naissance}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.pays}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.email}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 300 }}
+                  component="th"
+                  scope="row"
+                >
+                  {user.matrimoniale}
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: 12, fontWeight: 500, color: "red" }}
+                  component={Button}
+                  size="small"
+                  scope="row"
+                  onClick={() => handleDelete(user._id)}
+                >
+                  Supprimer
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <Snackbar
+        open={openSucces}
+        autoHideDuration={3000}
+        onClose={() => setOpenSucces(false)}
+      >
+        <Alert
+          onClose={() => setOpenSucces(false)}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {succes}
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openError}
+        autoHideDuration={3000}
+        onClose={() => setOpenSucces(false)}
+      >
+        <Alert
+          onClose={() => setOpenSucces(false)}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          {error}
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 };

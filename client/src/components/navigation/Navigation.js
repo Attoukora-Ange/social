@@ -1,4 +1,5 @@
 import {
+  Container,
   SwipeableDrawer,
   List,
   ListItem,
@@ -213,64 +214,69 @@ export const Navigation = () => {
   };
 
   const list = () => (
-    <Box
-      sx={{
-        width: "auto",
-        backgroundColor: "#099e4c",
-        height: "100%",
-      }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
+    <Container
+      maxWidth="xl"
+      sx={{ display: "flex", justifyContent: "center", gap: 5, mt: 2 }}
     >
-      {/* Si l'utilisateur est connecté et est un administrateur */}
-      {connect &&
-        (user?.isAdmin ? (
-          <List>
-            {/* Liste des pages pour les administrateurs */}
-            {pagesAdmin.map((page, index) => (
-              <ListItem
-                key={index}
-                component={Link}
-                to={page.lien}
-                disablePadding
-              >
-                <ListItemButton>
-                  <ListItemIcon sx={{ color: "#fff" }}>
-                    {page.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={page.text}
-                    sx={{ color: "#fff", textTransform: "uppercase" }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        ) : (
-          <List>
-            {/* Liste des pages pour les utilisateurs non administrateurs */}
-            {pagesUser.map((page, index) => (
-              <ListItem
-                key={index}
-                component={Link}
-                to={page.lien}
-                disablePadding
-              >
-                <ListItemButton>
-                  <ListItemIcon sx={{ color: "#fff" }}>
-                    {page.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={page.text}
-                    sx={{ color: "#fff", textTransform: "uppercase" }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        ))}
-    </Box>
+      <Box
+        sx={{
+          width: "auto",
+          backgroundColor: "#099e4c",
+          height: "100%",
+        }}
+        role="presentation"
+        onClick={toggleDrawer(false)}
+        onKeyDown={toggleDrawer(false)}
+      >
+        {/* Si l'utilisateur est connecté et est un administrateur */}
+        {connect &&
+          (user?.isAdmin ? (
+            <List>
+              {/* Liste des pages pour les administrateurs */}
+              {pagesAdmin.map((page, index) => (
+                <ListItem
+                  key={index}
+                  component={Link}
+                  to={page.lien}
+                  disablePadding
+                >
+                  <ListItemButton>
+                    <ListItemIcon sx={{ color: "#fff" }}>
+                      {page.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={page.text}
+                      sx={{ color: "#fff", textTransform: "uppercase" }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <List>
+              {/* Liste des pages pour les utilisateurs non administrateurs */}
+              {pagesUser.map((page, index) => (
+                <ListItem
+                  key={index}
+                  component={Link}
+                  to={page.lien}
+                  disablePadding
+                >
+                  <ListItemButton>
+                    <ListItemIcon sx={{ color: "#fff" }}>
+                      {page.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={page.text}
+                      sx={{ color: "#fff", textTransform: "uppercase" }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          ))}
+      </Box>
+    </Container>
   );
 
   // Fin  Importer d'un autre projet AttoNexa

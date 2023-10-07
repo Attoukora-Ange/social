@@ -64,7 +64,7 @@ export const EvenementDetail = ({ inf }) => {
         `${process.env.REACT_APP_API}/post/information`,
         OPTIONS
       );
-      dispatch({ type: ALL_INFO, payload: POST_DATA.data.post });
+      dispatch({ type: ALL_INFO, payload: POST_DATA.data.information });
     } catch (error) {
       console.error(error);
     }
