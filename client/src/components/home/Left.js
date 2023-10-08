@@ -7,6 +7,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Switch,
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/Inbox";
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
