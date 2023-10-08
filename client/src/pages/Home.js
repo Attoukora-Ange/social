@@ -17,7 +17,7 @@ export const Home = () => {
     },
   });
 
-  // Fonction asynchrone pour récupérer la liste des utilisateurs
+  // Fonction asynchrone pour récupérer la liste des utilisateurs.
   const fetchUserList = async () => {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
