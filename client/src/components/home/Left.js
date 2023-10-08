@@ -7,11 +7,8 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Switch,
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/Inbox";
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import NightlightIcon from '@mui/icons-material/Nightlight';
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { USE_USER_CONTEXTE } from "../../reduce/Contexte";
@@ -23,12 +20,8 @@ const StyledBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const Left = ({ mode, setMode }) => {
+export const Left = () => {
   const { user } = USE_USER_CONTEXTE();
-
-  const handleChangeMode = () => {
-    setMode(mode === "light" ? "dark" : "light");
-  };
 
   return (
     <StyledBox flexGrow={1} p={1}>
@@ -153,18 +146,6 @@ export const Left = ({ mode, setMode }) => {
               <InboxIcon color="info" />
             </ListItemIcon>
             <ListItemText primary="Signaler un problème" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton disableRipple>
-            <ListItemIcon>
-              {mode === "light" ? (
-                <WbSunnyIcon color="success" />
-              ) : (
-                <NightlightIcon />
-              )}
-            </ListItemIcon>
-            <Switch onChange={handleChangeMode} />
           </ListItemButton>
         </ListItem>
       </List>

@@ -1,23 +1,15 @@
-import { Stack, ThemeProvider, createTheme } from "@mui/material";
+import { Stack } from "@mui/material";
 import { Left } from "../components/home/Left";
 import { Middle } from "../components/home/Middle";
 import { Right } from "../components/home/Right";
 import { USE_USER_CONTEXTE } from "../reduce/Contexte";
 import { PageNotConnected } from "./PageNotConnected";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { USER, USERS } from "../reduce/Action";
 import axios from "axios";
 
 export const Home = () => {
   const { connect, user, dispatch } = USE_USER_CONTEXTE();
-
-  //Configuration du mode sombre et claire
-  const [mode, setMode] = useState("light");
-  const darkTheme = createTheme({
-    palette: {
-      mode,
-    },
-  });
 
   // Fonction asynchrone pour récupérer la liste des utilisateurs
   const fetchUserList = async () => {
@@ -49,12 +41,10 @@ export const Home = () => {
   }, [connect, user?._id]);
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <Stack direction="row">
-        {connect && <Left mode={mode} setMode={setMode}/>}
-        <Middle />
-        {connect ? <Right /> : <PageNotConnected />}
-      </Stack>
-    </ThemeProvider>
+    <Stack direction="row">
+      {connect && <Left />}
+      <Middle />
+      {connect ? <Right /> : <PageNotConnected />}
+    </Stack>
   );
 };
