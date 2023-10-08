@@ -1,4 +1,4 @@
-import { Stack, createTheme } from "@mui/material";
+import { Stack, ThemeProvider, createTheme } from "@mui/material";
 import { Left } from "../components/home/Left";
 import { Middle } from "../components/home/Middle";
 import { Right } from "../components/home/Right";
