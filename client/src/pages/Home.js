@@ -10,6 +10,8 @@ import axios from "axios";
 
 export const Home = () => {
   const { connect, user, dispatch } = USE_USER_CONTEXTE();
+
+  //Configuration du mode sombre et claire
   const [mode, setMode] = useState("light");
   const darkTheme = createTheme({
     palette: {
@@ -17,7 +19,7 @@ export const Home = () => {
     },
   });
 
-  // Fonction asynchrone pour récupérer la liste des utilisateurs.
+  // Fonction asynchrone pour récupérer la liste des utilisateurs
   const fetchUserList = async () => {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
