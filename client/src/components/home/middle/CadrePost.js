@@ -281,7 +281,7 @@ export const CadrePost = ({ setCopyContent, open, handleClose }) => {
           startIcon={<SendIcon />}
           onClick={handlePubler}
         >
-          Publer
+          Publier
         </Button>
       </DialogActions>
     </Dialog>

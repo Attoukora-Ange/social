@@ -241,7 +241,7 @@ export const SouvenirDetail = ({ post }) => {
       )}
 
       {post?.video && (
-        <video height="100%" width="100%" muted controls>
+        <video height="100%" width="100%" preload="auto" muted controls>
           <source src={post?.video} type="video/mp4" />
           <source src={post?.video} type="video/webm" />
           <source src={post?.video} type="video/ogg" />

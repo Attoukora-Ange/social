@@ -12,6 +12,7 @@ export const PostVideo = ({ video, selectedFile, setFileType }) => {
           <CardMedia
             component="video"
             controls
+            preload="auto"
             width="100%"
             height="100%"
             src={video}
