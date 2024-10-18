@@ -66,7 +66,7 @@ export const Connexion = () => {
     try {
       const OPTIONS = {};
       const USER_DATA = await axios.post(
-        `/user/connexion`,
+        `${process.env.REACT_APP_API}/user/connexion`,
         user,
         OPTIONS
       );
